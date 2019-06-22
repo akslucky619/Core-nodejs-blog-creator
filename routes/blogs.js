@@ -39,12 +39,19 @@ router.post('/:id/update', (req, res, next)=>{
     })
 })
 
+router.get('/:id/delete', (req,res, next)=>{
+    var id = req.params.id;
+    Blog.findByIdAndDelete(id, (err, blog)=>{
+        if(err) return next(err);
+        res.redirect('/')
+    })
+})
 
-router.get('/bloguser', (req, res, next)=>{
+router.get('/bloguser', authcontroller.isUserLogged, (req, res, next)=>{
     if(req.session && req.session.user._id){
         Blog.find({}, (err, userbloglist)=>{
             if(err) return next(err);
-            res.render('userblogs', {blogitems: userbloglist})
+            res.render('userblog', {blogitems: userbloglist})
         })
     }
     else{

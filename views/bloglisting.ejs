@@ -27,14 +27,15 @@
                 </div>
                 <% if(user && blog.author.equals(user._id)){%>
                     <a  href="/blogs/<%= blog._id %>/edit"><button class="button is-danger">Edit</button></a>
+                    <a  href="/blogs/<%= blog._id %>/delete"><button class="button is-danger">Delete</button></a>
                 
                     <%}%>
 
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <p class="title is-4"><%= blog.title %></p>
-                      <p class="subtitle is-6"><%= blog.description %></p>
+                      <p class="title is-3"><%= blog.title %></p>
+                      <p class="subtitle is-5"><%= blog.description %></p>
                     </div>
                   </div>
               
@@ -42,22 +43,27 @@
                     <%= blog.content %>
                   </div>
                 </div>
+              <form action="/blogs/comment" method="post">
                 <div class="field">
-                        <label class="label">Add Comment</label>
-                        <div class="control">
-                            <textarea class="textarea" placeholder="Textarea" ></textarea>
-                        </div>
-                </div>
+                    <label class="label">Add Comment</label>
+                    <div class="control">
+                        <textarea class="textarea" placeholder="Textarea" ></textarea>
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button is-link">Submit</button>
+                    </div>
+            </div>
+              </form>
               </div>
               <footer class="footer" style="margin-top: 5rem;">
-                    <div class="content has-text-centered">
-                      <p>
-                        <strong>Bulma</strong> by <a href="https://jgthms.com">Crime Master GoGo</a>. The source code is licensed
-                        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-                        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-                      </p>
-                    </div>
-                  </footer>
+                  <div class="content has-text-centered">
+                    <p>
+                      <strong>Blogs</strong> by <a href="https://github.com/akslucky619">Crime Master GoGo</a>. The source code is licensed
+                      <a href="https://github.com/akslucky619/Core-nodejs-blog-creator">Github</a>. The website content
+                      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                    </p>
+                  </div>
+                </footer>
 
    
 </body>

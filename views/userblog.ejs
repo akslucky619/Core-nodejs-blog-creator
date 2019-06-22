@@ -7,8 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <% blogitems.forEach(blog=> {
-        
+    <% blogitems.forEach(blog=>{%>
+        <div>
+            <% if(user && blog.author.equals(user._id)){%>
+                <a href="/blogs/<%= blog._id %>">
+                <h3><%= blog.title %></h3></a>
+            <%}%>
+        </div>
     })
 </body>
 </html>

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt')
+var Blog = require('../models/blog');
 
 var userSchema = new Schema({
     name:{
