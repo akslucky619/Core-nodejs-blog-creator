@@ -15,7 +15,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Medium
+                    <a href="/"> Medium</a>
                 </h1>
                 <h2 class="subtitle">
                     Create Blogs
@@ -23,14 +23,15 @@
             </div>
         </div>
     </section>
-    <form action="/blogs/new" method="post">
+    <h1 class="title" style="margin-left: 53rem; margin-top: 7rem;">Writing My Blog</h1>
+    <form style="width: 40rem; margin-left: 41rem;" action="/blogs/new" method="post">
         <div class="field">
             <label class="label">Blog Title</label>
             <div class="control">
                 <input class="input" type="text" placeholder="Text input" name="title">
             </div>
         </div>
-        
+
 
         <div class="field">
             <label class="label">Blog Description</label>
@@ -67,9 +68,9 @@
                             </div>
                         </div>
                         <div class="field">
-                                <div class="control">
-                                    <input class="input" type='hidden' name="author" value="<%= user._id %>">
-                                </div>
+                            <div class="control">
+                                <input class="input" type='hidden' name="author" value="<%= user._id %>">
+                            </div>
                         </div>
     </form>
 </body>

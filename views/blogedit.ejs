@@ -14,7 +14,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Medium
+                    <a href="/"> Medium</a>
                 </h1>
                 <h2 class="subtitle">
                     Create Blogs
@@ -22,7 +22,9 @@
             </div>
         </div>
     </section>
-    <form action="/blogs/<%= blog._id%>/update" method="post">
+    <h1 class="title" style="margin-left: 53rem; margin-top: 7rem;">Editing My Blog</h1>
+
+    <form style="width: 40rem; margin-left: 41rem;" action="/blogs/<%= blog._id%>/update" method="post">
         <div class="field">
             <label class="label">Blog Title</label>
             <div class="control">
@@ -33,7 +35,8 @@
         <div class="field">
             <label class="label">Blog Description</label>
             <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="Text input" name="description" value="<%= blog.description %>">
+                <input class="input is-success" type="text" placeholder="Text input" name="description"
+                    value="<%= blog.description %>">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
@@ -53,7 +56,8 @@
                         <div class="field">
                             <label class="label">Blog Content</label>
                             <div class="control">
-                                <textarea class="textarea" placeholder="Textarea" name="content"><%= blog.content %></textarea>
+                                <textarea class="textarea" placeholder="Textarea"
+                                    name="content"><%= blog.content %></textarea>
                             </div>
                         </div>
                         <div class="field is-grouped">
