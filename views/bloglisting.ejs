@@ -4,14 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1><%= blog.title %></h1>
-        <p><%= blog.description%></p>
-        <p><%= blog.content %></p>
-    </div>
-    <a href="/blogs/<%= blog._id %>/edit"><button>Edit</button></a>
+        <section class="hero is-primary">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                           <a href="/"> Medium</a>
+                        </h1>
+                        <h2 class="subtitle">
+                            Create Blogs
+                        </h2>
+                    </div>
+                </div>
+            </section>
+        <div class="card" style="width: 63rem;
+        margin-left: 30rem; box-shadow: none; padding-top: 5rem;">
+                <div class="card-image">
+                </div>
+                <% if(user && blog.author.equals(user._id)){%>
+                    <a  href="/blogs/<%= blog._id %>/edit"><button class="button is-danger">Edit</button></a>
+                
+                    <%}%>
+
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title is-4"><%= blog.title %></p>
+                      <p class="subtitle is-6"><%= blog.description %></p>
+                    </div>
+                  </div>
+              
+                  <div class="content">
+                    <%= blog.content %>
+                  </div>
+                </div>
+                <div class="field">
+                        <label class="label">Add Comment</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="Textarea" ></textarea>
+                        </div>
+                </div>
+              </div>
+              <footer class="footer" style="margin-top: 5rem;">
+                    <div class="content has-text-centered">
+                      <p>
+                        <strong>Bulma</strong> by <a href="https://jgthms.com">Crime Master GoGo</a>. The source code is licensed
+                        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+                        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                      </p>
+                    </div>
+                  </footer>
+
+   
 </body>
 </html>

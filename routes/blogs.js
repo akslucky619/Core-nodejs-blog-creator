@@ -16,7 +16,7 @@ router.post('/new', authcontroller.isUserLogged, (req, res, next)=>{
     })
 })
 
-router.get('/:id', (req, res, next)=>{
+router.get('/:id', authcontroller.isUserLogged, (req, res, next)=>{
     var id = req.params.id;
     Blog.findById(id, (err, blog)=>{
         if(err) return next(err);
@@ -38,6 +38,7 @@ router.post('/:id/update', (req, res, next)=>{
         res.redirect('/')
     })
 })
+
 
 router.get('/bloguser', (req, res, next)=>{
     if(req.session && req.session.user._id){

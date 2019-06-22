@@ -6,8 +6,8 @@ exports.isUserLogged = (req,res, next) =>{
             if(err) res.redirect('/users/login');
             res.locals.user = user;
             req.user = user;
+            console.log(user)
              next()
-
         })
     }
     else{
