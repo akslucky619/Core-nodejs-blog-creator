@@ -20,14 +20,21 @@ router.post('/new', authcontroller.isUserLogged, (req, res, next)=>{
 
 router.get('/:id', authcontroller.isUserLogged, (req, res, next)=>{
     var id = req.params.id;
-    Blog.findById(id, (err, blog)=>{
-        
+    Blog.findById(id)
+    .populate('comments')
+    .exec((err, blog) => {
+        console.log(blog);
         if(err) return next(err);
         res.render('bloglisting', {blog: blog})
     })
 })
 
-router.get('/:id', )
+// router.get('/:id', (req,res, next)=>{
+//     Comment.find({}, (err, comment)=>{
+//         if(err) return next(err);
+//         res.re
+//     })
+// })
 
 router.get('/:id/edit', (req, res, next)=>{
     var id = req.params.id;
