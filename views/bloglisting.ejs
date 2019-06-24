@@ -43,12 +43,14 @@
                     <%= blog.content %>
                   </div>
                 </div>
-              <form action="/blogs/comment" method="post">
+              <form action="/blogs/<%= blog.id %>/comments" method="post">
                 <div class="field">
                     <label class="label">Add Comment</label>
                     <div class="control">
-                        <textarea class="textarea" placeholder="Textarea" ></textarea>
+                        <textarea class="textarea" placeholder="Textarea" name="description"></textarea>
                     </div>
+                    <input type="hidden" value="<%= user.id %>" name="author">
+                    <input type="hidden" value="<%= blog._id %>" name="blogpost">
                     <div class="control">
                         <button type="submit" class="button is-link">Submit</button>
                     </div>

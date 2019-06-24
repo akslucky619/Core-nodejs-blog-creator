@@ -14,3 +14,9 @@ exports.isUserLogged = (req,res, next) =>{
         res.redirect('/users/login')
     }
 }
+
+exports.checkingInput = (req,res, next)=>{
+    if(req.body == ''){
+        res.redirect('/blogs/new');
+    }
+}

@@ -4,12 +4,23 @@ var User = require('../models/user')
 
 var blogSchema = new Schema({
     title:{
-        type: String
+        type: String,
+        required: true
     },
-    description: String,
-    content: String,
+    description: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true,
+    },
     tags: [String],
-    author: {type: Schema.Types.ObjectId, ref:'User'}
+    author: {type: Schema.Types.ObjectId, ref:'User'},
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 },{timestamps: true});
 
 var Blog = mongoose.model('Blog', blogSchema)

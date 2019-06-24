@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Blog = require('../models/blog');
+var commentRouter = require('./comments');
 var authcontroller = require('../controllers/authcontroller')
+var Comment = require('../models/comment')
 
 router.get('/new', authcontroller.isUserLogged, (req, res, next)=>{
     res.render('blogform'  )
@@ -19,10 +21,13 @@ router.post('/new', authcontroller.isUserLogged, (req, res, next)=>{
 router.get('/:id', authcontroller.isUserLogged, (req, res, next)=>{
     var id = req.params.id;
     Blog.findById(id, (err, blog)=>{
+        
         if(err) return next(err);
         res.render('bloglisting', {blog: blog})
     })
 })
+
+router.get('/:id', )
 
 router.get('/:id/edit', (req, res, next)=>{
     var id = req.params.id;
@@ -58,5 +63,7 @@ router.get('/bloguser', authcontroller.isUserLogged, (req, res, next)=>{
         res.redirect('/')
     }
 })
+
+router.use('/', commentRouter)
 
 module.exports = router;

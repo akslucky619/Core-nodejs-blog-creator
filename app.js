@@ -15,6 +15,7 @@ mongoose.connect('mongodb://localhost/mediumdata',{useNewUrlParser: true}, (err)
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var blogRouter = require('./routes/blogs');
+var commentRouter = require('./routes/comments');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/blogs', blogRouter);
+app.use('/comments', commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

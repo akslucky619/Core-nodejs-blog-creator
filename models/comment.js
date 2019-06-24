@@ -5,7 +5,7 @@ var Blog = require('../models/blog');
 
 var CommentSchema = new Schema({
     description: String,
-    post: {type: Schema.Types.ObjectId, ref:'Blog'},
+    blogpost: {type: Schema.Types.ObjectId, ref:'Blog'},
     author: {type: Schema.Types.ObjectId, ref:'User'}
 },{timestamps: {createdAt: 'created_at'}});
 
