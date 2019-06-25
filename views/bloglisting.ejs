@@ -28,7 +28,7 @@
     <div class="card-image">
     </div>
     <% if(user && blog.author.equals(user._id)){%>
-    <a href="/blogs/<%= blog._id %>/edit"><button class="button is-danger">Edit</button></a>
+    <a href="/blogs/<%= blog._id %>/edit"><button style="margin-left: 25px;" class="button is-danger">Edit</button></a>
     <a href="/blogs/<%= blog._id %>/delete"><button class="button is-danger">Delete</button></a>
 
     <%}%>
@@ -36,7 +36,9 @@
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <p class="title is-3"><%= blog.title %></p>
+    <p class="subtitle is-5">Blog by <%= blog.author.name %></p>
+
+    <p class="title is-3"><%= blog.title %></p>
     <p class="subtitle is-5"><%= blog.description %></p>
   </div>
   </div>
@@ -45,53 +47,54 @@
     <%= blog.content %>
   </div>
   </div>
+  <p class="subtitle is-5">Comments</p>
   <% blog.comments.forEach(comment =>{%>
   <div class="card">
     <div class="card-content">
-        <div class="content">
-            <%= comment.author.name %>
-          </div>
+      <div class="content">
+        By <%= comment.author.name %>
+      </div>
       <div class="content">
         <%= comment.description %>
       </div>
       <% if(user && comment.author.equals(user._id)){%>
       <a href="/comments/<%= comment._id %>/edit">
         <button class="button is-danger">
-            Edit
-          </button></a>
+          Edit
+        </button></a>
 
-          <a href="/comments/<%= comment._id %>/delete">
-            <button class="button is-danger">
-                Delete
-              </button></a>
+      <a href="/comments/<%= comment._id %>/delete">
+        <button class="button is-danger">
+          Delete
+        </button></a>
       <%}%>
     </div>
   </div>
   <%})%>
-  <form action="/blogs/<%= blog.id %>/comments" method="post">
-    <div class="field">
-      <label class="label">Add Comment</label>
-      <div class="control">
-        <textarea class="textarea" placeholder="Textarea" name="description"></textarea>
-      </div>
-      <input type="hidden" value="<%= user.id %>" name="author">
-      <input type="hidden" value="<%= blog._id %>" name="blogpost">
-      <div class="control">
-        <button type="submit" class="button is-link">Submit</button>
-      </div>
+      <form action="/blogs/<%= blog.id %>/comments" method="post">
+        <div class="field">
+          <label class="label">Add Comment</label>
+          <div class="control">
+            <textarea class="textarea" placeholder="Textarea" name="description"></textarea>
+          </div>
+          <input type="hidden" value="<%= user.id %>" name="author">
+          <input type="hidden" value="<%= blog._id %>" name="blogpost">
+          <div class="control">
+            <button type="submit" class="button is-link">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
-  </div>
-  <footer class="footer" style="margin-top: 5rem;">
-    <div class="content has-text-centered">
-      <p>
-        <strong>Blogs</strong> by <a href="https://github.com/akslucky619">Crime Master GoGo</a>. The source code is
-        licensed
-        <a href="https://github.com/akslucky619/Core-nodejs-blog-creator">Github</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-      </p>
-    </div>
-  </footer>
+    <footer class="footer" style="margin-top: 5rem;">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Blogs</strong> by <a href="https://github.com/akslucky619">Crime Master GoGo</a>. The source code is
+          licensed
+          <a href="https://github.com/akslucky619/Core-nodejs-blog-creator">Github</a>. The website content
+          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+      </div>
+    </footer>
 
 
 </body>

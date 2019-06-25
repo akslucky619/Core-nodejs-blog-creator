@@ -26,9 +26,9 @@ router.get('/:id', authcontroller.isUserLogged, (req, res, next)=>{
         populate: {
             path: 'author'
         }
-    })
+    }).populate('author')
     .exec((err, blog) => {
-        console.log(blog);
+        console.log(blog.author, 'check1');
         if(err) return next(err);
         res.render('bloglisting', {blog: blog})
     })
