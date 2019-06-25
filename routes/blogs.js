@@ -21,7 +21,12 @@ router.post('/new', authcontroller.isUserLogged, (req, res, next)=>{
 router.get('/:id', authcontroller.isUserLogged, (req, res, next)=>{
     var id = req.params.id;
     Blog.findById(id)
-    .populate('comments')
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    })
     .exec((err, blog) => {
         console.log(blog);
         if(err) return next(err);

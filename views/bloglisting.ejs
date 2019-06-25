@@ -48,6 +48,9 @@
   <% blog.comments.forEach(comment =>{%>
   <div class="card">
     <div class="card-content">
+        <div class="content">
+            <%= comment.author.name %>
+          </div>
       <div class="content">
         <%= comment.description %>
       </div>
