@@ -12,7 +12,11 @@ var userSchema = new Schema({
     },
     password:{
         type:String
-    }
+    },
+    favorites: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Blog'
+    }]
 },{timestamps: true})
 
 userSchema.pre('save', function(next){
