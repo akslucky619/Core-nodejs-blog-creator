@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="mobile">
     <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
@@ -22,33 +22,41 @@
             </div>
         </div>
     </section>
+
     <p>
-    <a href="/blogs/new" ><button class="button is-link">Create Your Blog</button></a>
-    <a href="/users/logout" ><button class="button is-link">Logout</button></a>
-
+        <% if(user){%>
+        <a href="/blogs/new"><button class="button is-link">Create Your Blog</button></a>
+        <a href="/users/logout"><button class="button is-link">Logout</button></a>
+        <%}%>
+        <% if(!user){%>
+        <a href="/users/login"><button class="button is-link">Login</button></a>
+        <%}%>
     </p>
-    
 
-    
+
+
 
     <h1 class="title" style="margin-left: 52rem;">List of Blogs</h1>
     <div class="list is-hoverable" style="box-shadow: none;"></div>
     <% blogitems.forEach(blog=>{%>
-    
-        <a class="list-item" href="/blogs/<%= blog._id%>" style="width: 25rem;margin-left: 46rem;"><%= blog.title %></a>
-    
-    <%})%>
-</div>
 
-<footer class="footer" style="margin-top: 5rem;">
-        <div class="content has-text-centered">
-          <p>
-            <strong>Blogs</strong> by <a href="https://github.com/akslucky619">Crime Master GoGo</a>. The source code is licensed
-            <a href="https://github.com/akslucky619/Core-nodejs-blog-creator">Github</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-          </p>
+        <a class="list-item" href="/blogs/<%= blog._id%>" style="width: 25rem;margin-left: 46rem;"><%= blog.title %>
+            <p>Description - <%= blog.description %></p>
+        </a>
+
+        <%})%>
         </div>
-      </footer>
+
+        <footer class="footer" style="margin-top: 5rem;">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Blogs</strong> by <a href="https://github.com/akslucky619">Crime Master GoGo</a>. The source
+                    code is licensed
+                    <a href="https://github.com/akslucky619/Core-nodejs-blog-creator">Github</a>. The website content
+                    is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                </p>
+            </div>
+        </footer>
 </body>
 
 </html>

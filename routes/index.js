@@ -4,7 +4,7 @@ var Blog = require('../models/blog')
 var authcontroller = require('../controllers/authcontroller')
 
 /* GET home page. */
-router.get('/', authcontroller.isUserLogged, (req, res, next)=>{
+router.get('/', (req, res, next)=>{
   // if(req.session && req.session.userId){
   Blog.find({}, (err, fullbloglist)=>{
     if(err) return next(err);

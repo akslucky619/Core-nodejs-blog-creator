@@ -7,6 +7,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var session = require('express-session')
 var Mongostore = require('connect-mongo')(session);
+var authcontroller = require('./controllers/authcontroller')
 
 mongoose.connect('mongodb://localhost/mediumdata',{useNewUrlParser: true}, (err)=>{
   err? console.log('not connected') : console.log('connected')
@@ -35,6 +36,7 @@ app.use(session({
   store: new Mongostore({mongooseConnection: mongoose.connection})
 }))
 
+app.use(authcontroller.userSession);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/blogs', blogRouter);

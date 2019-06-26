@@ -22,8 +22,8 @@
             </div>
         </div>
     </section>
+    <% if(user && blog.author.equals(user._id)){%>
     <h1 class="title" style="margin-left: 53rem; margin-top: 7rem;">Editing My Blog</h1>
-
     <form style="width: 40rem; margin-left: 41rem;" action="/blogs/<%= blog._id%>/update" method="post">
         <div class="field">
             <label class="label">Blog Title</label>
@@ -69,6 +69,8 @@
                             </div>
                         </div>
     </form>
+    <%}%>
+    <h1 class="title" style="margin-left: 53rem; margin-top: 7rem;">Unauthorised User</h1>
     <footer class="footer" style="margin-top: 5rem;">
             <div class="content has-text-centered">
               <p>

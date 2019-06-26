@@ -14,7 +14,6 @@ var Comment = require('../models/comment');
 //                 comment: newComment.id
 //             }
 //         })
-    
 // })
 
 router.post('/:id/comments', (req,res)=>{
@@ -64,7 +63,8 @@ router.post('/:id/update', (req, res, next)=>{
 
 router.get('/:id/delete', (req,res)=>{
     var id = req.params.id;
-    Comment.findByIdAndDelete(id, (err)=>{
+    Comment.findByIdAndDelete(id, (err, comment)=>{
+        console.log(comment);
         if(err) return next(err);
         res.redirect('/');
     })

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <section class="hero is-primary">
+  <section class="hero is-primary mobile">
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
@@ -30,9 +30,7 @@
     <% if(user && blog.author.equals(user._id)){%>
     <a href="/blogs/<%= blog._id %>/edit"><button style="margin-left: 25px;" class="button is-danger">Edit</button></a>
     <a href="/blogs/<%= blog._id %>/delete"><button class="button is-danger">Delete</button></a>
-
     <%}%>
-
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
@@ -43,7 +41,7 @@
   </div>
   </div>
 
-  <div class="content">
+  <div class="content mobile">
     <%= blog.content %>
   </div>
   </div>
@@ -71,6 +69,7 @@
     </div>
   </div>
   <%})%>
+  <% if(user){%>
       <form action="/blogs/<%= blog.id %>/comments" method="post">
         <div class="field">
           <label class="label">Add Comment</label>
@@ -84,6 +83,7 @@
           </div>
         </div>
       </form>
+      <%}%>
     </div>
     <footer class="footer" style="margin-top: 5rem;">
       <div class="content has-text-centered">
