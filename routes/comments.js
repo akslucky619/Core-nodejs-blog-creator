@@ -22,7 +22,7 @@ router.post('/:id/comments', (req,res)=>{
         if(err) return next(err)
         Blog.findByIdAndUpdate(req.params.id,{
             $push:{comments: result._id}}, (err, blog) => {
-                console.log(err, blog);
+                // console.log(err, blog);
                 res.redirect(`/blogs/${blog.id}`)
             }
         )
@@ -37,7 +37,7 @@ router.post('/:id/comments', (req,res)=>{
 router.get('/:id/edit', (req,res)=>{
     Comment.findById(req.params.id, (err, result)=>{
         if(err) return next(err);
-        console.log(result, "tis is res")
+        // console.log(result, "tis is res")
         res.render('commentedit',{comment: result});
     })
 })
@@ -64,7 +64,7 @@ router.post('/:id/update', (req, res, next)=>{
 router.get('/:id/delete', (req,res)=>{
     var id = req.params.id;
     Comment.findByIdAndDelete(id, (err, comment)=>{
-        console.log(comment);
+        // console.log(comment);
         if(err) return next(err);
         res.redirect('/');
     })

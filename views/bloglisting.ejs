@@ -20,7 +20,22 @@
         <h2 class="subtitle">
           Create Blogs
         </h2>
+
       </div>
+      <div style="float: right;" class="container">
+        <% if(user){%>
+        <h2>
+          <p><%= user.name %></p>
+          <p><%= user.email %></p>
+          <a href="/users/logout"><button class="button is-link">Logout</button></a>
+        </h2>
+        <%}%>
+            <% if(!user){%>
+        <h2>
+          <a href="/users/login"><button class="button is-link">Login</button></a>
+        </h2>
+        <%}%>
+        </div>
     </div>
   </section>
   <div class="card" style="width: 63rem;
@@ -28,62 +43,64 @@
     <div class="card-image">
     </div>
     <% if(user && blog.author.equals(user._id)){%>
-    <a href="/blogs/<%= blog._id %>/edit"><button style="margin-left: 25px;" class="button is-danger">Edit</button></a>
-    <a href="/blogs/<%= blog._id %>/delete"><button class="button is-danger">Delete</button></a>
-    <%}%>
+        <a href="/blogs/<%= blog._id %>/edit"><button style="margin-left: 25px;"
+            class="button is-danger">Edit</button></a>
+        <a href="/blogs/<%= blog._id %>/delete"><button class="button is-danger">Delete</button></a>
+        <%}%>
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
     <p class="subtitle is-5">Blog by <%= blog.author.name %></p>
 
-    <p class="title is-3"><%= blog.title %></p>
-    <p class="subtitle is-5"><%= blog.description %></p>
-  </div>
-  </div>
-
-  <div class="content mobile">
-    <%= blog.content %>
-  </div>
-  </div>
-  <p class="subtitle is-5">Comments</p>
-  <% blog.comments.forEach(comment =>{%>
-  <div class="card">
-    <div class="card-content">
-      <div class="content">
-        By <%= comment.author.name %>
+        <p class="title is-3"><%= blog.title %></p>
+        <p class="subtitle is-5"><%= blog.description %></p>
       </div>
-      <div class="content">
-        <%= comment.description %>
-      </div>
-      <% if(user && comment.author.equals(user._id)){%>
-      <a href="/comments/<%= comment._id %>/edit">
-        <button class="button is-danger">
-          Edit
-        </button></a>
+    </div>
 
-      <a href="/comments/<%= comment._id %>/delete">
-        <button class="button is-danger">
-          Delete
-        </button></a>
-      <%}%>
+    <div class="content mobile">
+      <%= blog.content %>
+    </div>
+    </div>
+    <a href="/blogs/<%= blog._id %>/favorites"><button>Add to favorites</button></a>
+    <p class="subtitle is-5">Comments</p>
+    <% blog.comments.forEach(comment =>{%>
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          By <%= comment.author.name %>
+        </div>
+        <div class="content">
+          <%= comment.description %>
+        </div>
+        <% if(user && comment.author.equals(user._id)){%>
+        <a href="/comments/<%= comment._id %>/edit">
+          <button class="button is-danger">
+            Edit
+          </button></a>
+
+        <a href="/comments/<%= comment._id %>/delete">
+          <button class="button is-danger">
+            Delete
+          </button></a>
+        <%}%>
     </div>
   </div>
   <%})%>
-  <% if(user){%>
-      <form action="/blogs/<%= blog.id %>/comments" method="post">
-        <div class="field">
-          <label class="label">Add Comment</label>
-          <div class="control">
-            <textarea class="textarea" placeholder="Textarea" name="description"></textarea>
+        <% if(user){%>
+        <form action="/blogs/<%= blog.id %>/comments" method="post">
+          <div class="field">
+            <label class="label">Add Comment</label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Textarea" name="description"></textarea>
+            </div>
+            <input type="hidden" value="<%= user.id %>" name="author">
+            <input type="hidden" value="<%= blog._id %>" name="blogpost">
+            <div class="control">
+              <button type="submit" class="button is-link">Submit</button>
+            </div>
           </div>
-          <input type="hidden" value="<%= user.id %>" name="author">
-          <input type="hidden" value="<%= blog._id %>" name="blogpost">
-          <div class="control">
-            <button type="submit" class="button is-link">Submit</button>
-          </div>
-        </div>
-      </form>
-      <%}%>
+        </form>
+        <%}%>
     </div>
     <footer class="footer" style="margin-top: 5rem;">
       <div class="content has-text-centered">

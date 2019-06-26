@@ -3,7 +3,8 @@ var router = express.Router();
 var Blog = require('../models/blog');
 var commentRouter = require('./comments');
 var authcontroller = require('../controllers/authcontroller')
-var Comment = require('../models/comment')
+var Comment = require('../models/comment');
+var User = require('../models/user')
 
 router.get('/new', authcontroller.isUserLogged, (req, res, next) => {
     res.render('blogform')
@@ -28,7 +29,7 @@ router.get('/:id', (req, res, next) => {
             }
         }).populate('author')
         .exec((err, blog) => {
-            console.log(blog.author, 'check1');
+            // console.log(blog.author, 'check1');
             if (err) return next(err);
             res.render('bloglisting', { blog: blog })
         })
@@ -44,7 +45,7 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/edit', authcontroller.isUserLogged, (req, res, next) => {
     var id = req.params.id;
     Blog.findById(id, (err, blog) => {
-        console.log(blog, 'inside blog')
+        // console.log(blog, 'inside blog')
         res.render('blogedit', { blog: blog })
     })
 })
@@ -81,6 +82,21 @@ router.get('/bloguser', authcontroller.isUserLogged, (req, res, next) => {
     else {
         res.redirect('/')
     }
+})
+
+
+// add to favorites
+router.get('/:id/favorites', authcontroller.isUserLogged, (req,res,next)=>{
+    Blog.findById(req.params.id, (err, blog)=>{
+        console.log(err, blog ,"check1");
+        if(err) return next(err);
+        User.findByIdAndUpdate(req.user._id,{
+            $push:{favorites: blog._id}}, (err, result) => {
+                console.log(err , result, "check2")
+            if(err) return next(err)
+            res.redirect('/')
+        })
+    })
 })
 
 router.use('/', commentRouter)
