@@ -16,10 +16,10 @@ exports.isUserLogged = (req,res, next) =>{
 }
 
 exports.userSession = (req, res, next) => {
-    console.log(req.session, 'cp1')
+    // console.log(req.session, 'cp1')
     if(req.session && req.session.userId){
         User.findById(req.session.userId, (err, user)=>{
-            console.log(err, user, 'cp2')
+            // console.log(err, user, 'cp2')
             if(err) return next(err)
             req.user = user;
             res.locals.user = user;
@@ -27,7 +27,7 @@ exports.userSession = (req, res, next) => {
         })
     }
     else{
-        console.log('cp3');
+        // console.log('cp3');
         req.user= null;
 
         res.locals.user = null;

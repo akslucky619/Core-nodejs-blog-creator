@@ -61,7 +61,11 @@
       <%= blog.content %>
     </div>
     </div>
-    <a href="/blogs/<%= blog._id %>/favorites"><button>Add to favorites</button></a>
+    <% if(user && user.favorites.indexOf(blog.id) > -1 ){%>
+    <a href="/blogs/<%= blog._id %>/unfavorite"><button class="button is-danger">Unfavorite</button></a>
+    <%}else if(user){ %>
+    <a href="/blogs/<%= blog._id %>/favorites"><button class="button is-success">Add to favorites</button></a>
+    <%}%>
     <p class="subtitle is-5">Comments</p>
     <% blog.comments.forEach(comment =>{%>
     <div class="card">
